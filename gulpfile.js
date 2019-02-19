@@ -1,6 +1,8 @@
 // Load dependancies
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var uglify = require('gulp-uglify');
+var pump = require('pump');
 // Create server browser-sync
 var browserSync = require('browser-sync').create();
 // Path variables
@@ -64,3 +66,13 @@ gulp.task('serve', ['sass'], function() {
     gulp.watch(`${src}/assets/sass/*.scss`, ['sass']);
     gulp.watch("app/*.html").on('change', browserSync.reload);
 });
+
+gulp.task('compress', function (cb) {
+    pump([
+          gulp.src(`${src}/assets/js/*.js`),
+          uglify(),
+          gulp.dest('dist')
+      ],
+      cb
+    );
+  });

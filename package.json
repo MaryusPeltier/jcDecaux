@@ -11,5 +11,11 @@
     "gulp-load-plugins": "latest",
     "gulp-rename": "latest",
     "gulp-sass": "latest"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "gulp-concat-flatten": "^1.1.1",
+    "gulp-uglify": "^3.0.1",
+    "pump": "^3.0.0"
   }
 }

@@ -1,3 +1,7 @@
+
+
+
+
 $(document).ready(function(){
         mapboxgl.accessToken = 'pk.eyJ1IjoibWFyeXVzMzMiLCJhIjoiY2pzNGxpbGZrMDVzOTN5cGZ0Z3BxcTBlMSJ9.28m4YEQTF9M9I0hmCf2fyg';
         var map = new mapboxgl.Map({
@@ -23,7 +27,7 @@ $.ajax({
 
             
                 var popup = new mapboxgl.Popup({ offset: 25 })
-                .setText(`${marker.address} \n  ${marker.status}`);
+                // .setText(`${marker.address} \n  ${marker.status}`);
             // el.addEventListener('click', function() {
             // window.alert(marker.properties.message);
             // });
