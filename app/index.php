@@ -8,7 +8,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
-    <div id='map' style='width: 400px; height: 300px; display:block;'><div id="marker"></div></div>
+    <div id='map' style='width: 400px; height: 300px; display:block;'></div>
     <div ></div>    
     
     <script src="js/jquery-3.3.1.min.js"></script>
