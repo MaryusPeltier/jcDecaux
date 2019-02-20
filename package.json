@@ -9,7 +9,7 @@
     "gulp-csscomb": "latest",
     "gulp-csso": "latest",
     "gulp-load-plugins": "latest",
-    "gulp-rename": "latest",
+    "gulp-rename": "^1.4.0",
     "gulp-sass": "latest"
   },
   "dependencies": {

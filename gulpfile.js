@@ -3,6 +3,8 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var uglify = require('gulp-uglify');
 var pump = require('pump');
+
+
 // Create server browser-sync
 var browserSync = require('browser-sync').create();
 // Path variables
@@ -37,7 +39,7 @@ gulp.task('minify', function () {
 * Name: build
 * Description: Compiles Sass to CSS
 */
-gulp.task('build', ['sass']);
+gulp.task('build', ['sass','uglify']);
 /*
 * Name: prod
 * Description: Build and optimizes all assets for production
@@ -59,20 +61,23 @@ gulp.task('watch', function () {
 * Name: serve
 * Description: Build and Refreshes the browser automatically whenever you save a file
 */
-gulp.task('serve', ['sass'], function() {
+    gulp.task('uglify', function (cb) {
+        pump([
+              gulp.src(`${src}/assets/js/*.js`)
+                .pipe(plugins.rename("app.min.js"))
+                .pipe(browserSync.stream()),
+              uglify(),
+              gulp.dest('dist')
+          ],
+          cb
+        );
+      });
+
+gulp.task('serve', ['sass','uglify','minify'], function() {
     browserSync.init({
         server: "./app"
     });
     gulp.watch(`${src}/assets/sass/*.scss`, ['sass']);
+    gulp.watch(`${src}/assets/js/*.js`,['uglify']);
     gulp.watch("app/*.html").on('change', browserSync.reload);
 });
-
-gulp.task('compress', function (cb) {
-    pump([
-          gulp.src(`${src}/assets/js/*.js`),
-          uglify(),
-          gulp.dest('dist')
-      ],
-      cb
-    );
-  });

@@ -19,7 +19,6 @@
                 }
             </style>
     <div id='map' style='width: 800px; height: 500px; display:block;'></div>
-    <p id="demo"></p>   
     
     <script src="dist/assets/js/jquery-3.3.1.min.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
