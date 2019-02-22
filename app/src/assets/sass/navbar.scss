@@ -6,10 +6,40 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #111; /* Black*/
+    background-color: #202122; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
+    padding-top: 0px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    & .buttonSidenav{
+      margin-top:20px;
+    }
+    & .sidebarProfil{
+      background-color: #fdb10e;
+      padding-top: 100px;
+      & p{
+        color: white;
+        font-weight: 400;
+        padding-left:20px;
+
+      }
+      & h3{
+        color:white;
+        font-weight: 700;
+        padding-left: 20px;
+        margin-bottom: 4px;
+      }
+    }
+    & .imageProfil{
+      background-image: url('https://images.pexels.com/photos/555790/pexels-photo-555790.png?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+      background-size: cover;
+      background-position: center center;
+      width: 70px;
+      height: 70px;
+      margin-bottom:20px;
+      margin-left: 20px;
+      border-radius: 50px;
+      border: 1px solid #fdb10e;
+    }
   }
   
   /* The navigation menu links */
@@ -17,9 +47,10 @@
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #ffffff;
     display: block;
     transition: 0.3s;
+    font-weight: 200;
   }
   
   /* When you mouse over the navigation links, change their color */
@@ -28,13 +59,6 @@
   }
   
   /* Position and style the close button (top right corner) */
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
   
   /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
   #main {
@@ -49,10 +73,17 @@
     .sidenav {padding-top: 0px;}
     .sidenav a {font-size: 18px;}
   }
-
+  .fa-bars{
+    font-size: 25px;
+    margin:20px;
+    color: white;
+  }
   .moveSidenav{
     width:300px;
   }
   .moveMain{
+    margin-left:300px;
+  }
+  .movePopup{
     margin-left:300px;
   }

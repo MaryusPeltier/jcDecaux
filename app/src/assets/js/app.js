@@ -1,9 +1,9 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFyeXVzMzMiLCJhIjoiY2pzNGxpbGZrMDVzOTN5cGZ0Z3BxcTBlMSJ9.28m4YEQTF9M9I0hmCf2fyg';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/mapbox/light-v9',
     center: [4.8320114, 45.7578137],
-    zoom: 12,
+    zoom: 15,
 });
 var urlAPI = "http://localhost/projects/Talis-front/jcdecaux/api" ;
 
@@ -23,9 +23,18 @@ $.ajax({
                    anchor: 'top',   // To show popup on bottom
                 }
             ).setHTML(`
-            <h2>${marker.number}</h2>
-            <p>${marker.address}</p>
-            <input type="submit" value="RESERVER">
+            <div class="container">
+             <div class="row">
+                 <div class="col-6">
+                    <div class="imageVelo"></div>
+                 </div>
+                 <div class="col-6">
+                     <h2>${marker.number}</h2>
+                     <p>${marker.available_bikes} / ${marker.bike_stands}</p>
+                 </div>
+             </div>
+                 <input class="reserveButton" type="submit" value="RESERVER">
+            </div>
             `)
             
             // add marker to map
@@ -57,6 +66,7 @@ function formSubmitPopup(event){
 $( "span" ).click(function() {
     $( "#mySidenav" ).toggleClass( "moveSidenav" );
     $("#main").toggleClass("moveMain");
+    $(".mapboxgl-popup").toggleClass("movePopup");
   });
 
 

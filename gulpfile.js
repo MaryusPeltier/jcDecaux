@@ -69,9 +69,9 @@ gulp.task('concat', function() {
 
   gulp.task('serve', ['sass', 'concat'], function() {
     browserSync.init({
-        server: "./app"
+        proxy: "http://localhost/projects/Talis-front/jcdecaux/app"
     });
     gulp.watch(`${source}/assets/sass/*.scss`, ['sass']);
     gulp.watch(`${source}/assets/js/*.js`, ['concat']);
-    gulp.watch("app/*.html").on('change', browserSync.reload);
+    gulp.watch("app/*.php").on('change', browserSync.reload);
 });

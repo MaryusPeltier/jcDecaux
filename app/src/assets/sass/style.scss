@@ -8,8 +8,9 @@ ul, li{
   margin:0;padding:0;
 }
 #navbarVelo{
+  padding-top:30px;
   position: fixed;
-  background-color: darkgray;
+  background-color:#202122;
   display: none;
   width: 100%;
   z-index: 9999;
@@ -22,6 +23,16 @@ ul, li{
       }
     }
   }
+}
+.imageVelo{
+  background-image: url('../img/velo.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin:0;
+  width: 100%;
+  height: 100%;
+
 }
 #map {
     position: absolute;
@@ -48,12 +59,41 @@ ul, li{
     bottom:10px;
     top:auto;
     transform:none !important;
+    
   }
   
   .mapboxgl-popup-content {
-    text-align: center;
     font-family: 'Open Sans', sans-serif;
     border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.103) 2px 2px 2px 2px;
+    & .container{
+      margin-top:10px;
+      margin-bottom: 10px;
+    }
+    & h2{
+      font-weight: 700;
+      font-size: 25px;
+      margin-bottom: 2px;
+    }
+    & p{
+      font-size:12px;
+      font-weight: 700;
+      margin-bottom:0px;
+    }
+    & .reserveButton{
+      width: 100%;
+      background-color:#fdb10e;
+      border:0 none;
+      outline:0;
+      box-shadow:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      color:white;
+      padding: 10px;
+      margin:10px;
+      margin-left:0px;
+    }
   }
   .mapboxgl-popup-tip {
     border:none !important;

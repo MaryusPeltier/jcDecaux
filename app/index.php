@@ -1,3 +1,9 @@
+<?php
+header('Access-Control-Allow-Origin: *');
+session_start();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="dist/assets/css/style.css">
@@ -20,13 +27,27 @@
     <section id="main">
             <header id="navbarVelo">
                 <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <a href="#">About</a>
-                    <a href="#">Services</a>
-                    <a href="#">Clients</a>
-                    <a href="#">Contact</a>
+                    <div class="sidebarProfil">
+                        <div class="row">
+                        <div class="col-3">
+                            <div class="imageProfil"></div>
+                        </div>
+                        <div class="col-9">
+                            <h3>MICHEL</h3>
+                            <p>Crédit : 0.00 €</p>
+                        </div>
+                        </div>
+                    </div>
+                <div class="buttonSidenav">
+                    <a href="#">Carte</a>
+                    <a href="#">Mes factures</a>
+                    <a href="#">Shop</a>
+                    <a href="#">Paramètres</a>
+                    <a href="#">Paiement</a>
+                    <a href="#">Aide</a>
                 </div>
-                <span ><img src="https://image.flaticon.com/icons/png/128/56/56763.png" alt=""></span>
+                </div>
+                <span ><i class="fas fa-bars"></i></span>
             </header>
         <div id="map"></div>
     </section>
