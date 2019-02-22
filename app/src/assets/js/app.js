@@ -69,6 +69,10 @@ $( "span" ).click(function() {
     $(".mapboxgl-popup").toggleClass("movePopup");
   });
 
+$("button").click(function(){
+    $("#formLogin").toggleClass("moveFormLogin");
+    $("#formSignup").toggleClass("moveFormSignup");
+});
 
 
 

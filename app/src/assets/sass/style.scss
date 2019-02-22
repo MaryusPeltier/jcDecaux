@@ -1,4 +1,5 @@
 @import "navbar";
+@import "form";
 body{
   width: 100%;
   height: 100%;
@@ -53,7 +54,7 @@ ul, li{
 }
 .mapboxgl-popup {
     position: fixed;
-    width: 90%;
+    width: 330px;
     left: 5%;
     right: 0;
     bottom:10px;

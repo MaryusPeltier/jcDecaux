@@ -1,10 +1,10 @@
-$("#formLogin").on("submit", function(event){
+$("#formSignup").on("submit", function(event){
     event.preventDefault();
     const serializeFormLogin = $(this).serialize();
     // Ajax request (checkUser.php)
     $.ajax({
         type: "post",
-        url: `${urlAPI}/checkUser.php`,
+        url: `${urlAPI}/checkSignup.php`,
         data: serializeFormLogin,
         success: function(data){
             console.log(data);
@@ -12,9 +12,8 @@ $("#formLogin").on("submit", function(event){
             console.log(data);
 
             if(data.username && data.password){
-                $("#formLogin").hide();
                 $("#formSignup").hide();
-                $("button").hide();
+                $("#formLogin").hide();
                 $('#navbarVelo').show();
                 $("#map").show();
                 
