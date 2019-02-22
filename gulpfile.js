@@ -1,83 +1,77 @@
-// Load dependancies
+// Requis
 var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
-var uglify = require('gulp-uglify');
-var pump = require('pump');
 
-
-// Create server browser-sync
+// Include plugins
+var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
 var browserSync = require('browser-sync').create();
-// Path variables
-var src = './app/src'; // dossier de travail
-var dest = './app/dist'; // dossier à livrer
-/*
-* Name: sass
-* Description: Compiles Sass to CSS
-*/
+let uglify = require('gulp-uglify-es').default;
+
+// Variables de chemins
+var source = './app/src'; // dossier de travail
+var destination = './app/dist'; // dossier à livrer
+
 gulp.task('sass', function () {
-    return gulp.src(`${src}/assets/sass/style.scss`)
+    return gulp.src(`${source}/assets/sass/style.scss`)
         .pipe(plugins.sass())
         .pipe(plugins.csscomb())
         .pipe(plugins.cssbeautify({indent: '  '}))
         .pipe(plugins.autoprefixer())
-        .pipe(gulp.dest(`${dest}/assets/css/`))
+        .pipe(gulp.dest(`${destination}/assets/css/`))
         .pipe(browserSync.stream());
 });
-/*
-* Name: minify
-* Description: Minification CSS
-*/
+
+gulp.task("uglifyjs", function () {
+  return gulp.src(`${source}/assets/js/*.js`)
+  .pipe(uglify(/* options */))
+  .pipe(plugins.rename("app.min.js"))
+      .pipe(gulp.dest(`${destination}/assets/js/`))
+      .pipe(browserSync.stream());
+});
+
+
+
+// Tâche "minify" = minification CSS (destination -> destination)
 gulp.task('minify', function () {
-    return gulp.src(`${dest}/assets/css/*.css`)
+    return gulp.src(`${destination}/assets/css/*.css`)
       .pipe(plugins.csso())
       .pipe(plugins.rename({
         suffix: '.min'
       }))
-      .pipe(gulp.dest(`${dest}/assets/css/`));
-});
-/*
-* Name: build
-* Description: Compiles Sass to CSS
-*/
-gulp.task('build', ['sass','uglify']);
-/*
-* Name: prod
-* Description: Build and optimizes all assets for production
-*/
-gulp.task('prod', ['build',  'minify']);
-/*
-* Name: default
-* Description: Default task
-*/
-gulp.task('default', ['build']);
-/*
-* Name: watch
-* Description: Automatically build when scss change
-*/
-gulp.task('watch', function () {
-    gulp.watch(`${src}/assets/sass/*.scss`, ['build']);
-});
-/*
-* Name: serve
-* Description: Build and Refreshes the browser automatically whenever you save a file
-*/
-    gulp.task('uglify', function (cb) {
-        pump([
-              gulp.src(`${src}/assets/js/*.js`)
-                .pipe(plugins.rename("app.min.js"))
-                .pipe(browserSync.stream()),
-              uglify(),
-              gulp.dest('dist')
-          ],
-          cb
-        );
-      });
+      .pipe(gulp.dest(`${destination}/assets/css/`));
+  });
 
-gulp.task('serve', ['sass','uglify','minify'], function() {
+
+  // Tâche "build"
+gulp.task('build', ['sass' , 'concat']);
+
+// Tâche "prod" = Build + minify
+gulp.task('prod', ['build',  'minify']);
+
+// Tâche par défaut
+gulp.task('default', ['build']);
+
+
+// Tâche "watch" = je surveille *scss
+// gulp.task('watch', function () {
+//     gulp.watch(source + '/assets/sass/*.scss', ['build']);
+//   });
+
+gulp.task('concat', function() {
+  return gulp.src(source + '/assets/js/*.js')
+    .pipe(plugins.concat('app.js'))
+    .pipe(uglify())
+    .pipe(plugins.rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(destination +'/assets/js'))
+    .pipe(browserSync.stream());
+  });
+
+  gulp.task('serve', ['sass', 'concat'], function() {
     browserSync.init({
         server: "./app"
     });
-    gulp.watch(`${src}/assets/sass/*.scss`, ['sass']);
-    gulp.watch(`${src}/assets/js/*.js`,['uglify']);
+    gulp.watch(`${source}/assets/sass/*.scss`, ['sass']);
+    gulp.watch(`${source}/assets/js/*.js`, ['concat']);
     gulp.watch("app/*.html").on('change', browserSync.reload);
 });

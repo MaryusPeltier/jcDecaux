@@ -1,8 +1,107 @@
+/* The side navigation menu */
+.sidenav {
+    /* 0 width - change this with JavaScript */
+  position: fixed;
+    /* Stay in place */
+  z-index: 1;
+    /* Stay on top */
+  top: 0;
+    /* Stay at the top */
+  left: 0;
+    /* Black*/
+  overflow-x: hidden;
+    /* 100% Full-height */
+  width: 0;
+  height: 100%;
+    /* Disable horizontal scroll */
+  padding-top: 60px;
+    /* Place content 60px from the top */
+  transition: .5s;
+  background-color: #111;
+    /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  font-size: 25px;
+  display: block;
+  padding: 8px 8px 8px 32px;
+  transition: .3s;
+  text-decoration: none;
+  color: #818181;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  font-size: 36px;
+  position: absolute;
+  top: 0;
+  right: 25px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  padding: 0;
+  transition: margin-left .5s;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 0;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+#navbarVelo {
+  position: fixed;
+  z-index: 9999;
+  display: none;
+  width: 100%;
+  background-color: darkgray;
+}
+
+#navbarVeloul {
+  list-style: none;
+}
+
+#navbarVeloulli {
+  display: inline-block;
+}
+
+#navbarVeloullia {
+  padding: 10px;
+}
+
 #map {
   position: absolute;
   top: 0;
   bottom: 0;
+  display: none;
   width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 #marker {
@@ -10,6 +109,27 @@
   height: 50px;
   cursor: pointer;
   border-radius: 50%;
-  background-image: url('img/bike-marker.png');
+  background-image: url('https://cdn2.iconfinder.com/data/icons/map-pins-1-01-easylines/128/yumminky-pin-12-512.png');
   background-size: cover;
+}
+
+.mapboxgl-popup {
+  position: fixed;
+  top: auto;
+  right: 0;
+  bottom: 10px;
+  left: 5%;
+  width: 90%;
+  -webkit-transform: none !important;
+          transform: none !important;
+}
+
+.mapboxgl-popup-content {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.mapboxgl-popup-tip {
+  border: none !important;
 }

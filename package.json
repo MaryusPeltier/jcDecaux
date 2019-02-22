@@ -1,21 +1,17 @@
 {
-  "name": "starter",
+  "name": "projet",
   "version": "0.0.1",
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "latest",
+    "gulp-concat": "^2.6.1",
     "gulp-cssbeautify": "latest",
     "gulp-csscomb": "latest",
     "gulp-csso": "latest",
     "gulp-load-plugins": "latest",
-    "gulp-rename": "^1.4.0",
-    "gulp-sass": "latest"
-  },
-  "dependencies": {
-    "fs": "0.0.1-security",
-    "gulp-concat-flatten": "^1.1.1",
-    "gulp-uglify": "^3.0.1",
-    "pump": "^3.0.0"
+    "gulp-rename": "latest",
+    "gulp-sass": "latest",
+    "gulp-uglify-es": "^1.0.4"
   }
 }

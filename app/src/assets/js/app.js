@@ -1,112 +1,70 @@
-
-
-$(document).ready(function(){
-
-    mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzMzMiLCJhIjoiY2pzYWFpcXNwMDAxbzN5cGZneGxia3U3ZCJ9.sigYT2nlLnC1siycJ3im-Q';
-    var map = new mapboxgl.Map({
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFyeXVzMzMiLCJhIjoiY2pzNGxpbGZrMDVzOTN5cGZ0Z3BxcTBlMSJ9.28m4YEQTF9M9I0hmCf2fyg';
+var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [4.8320114, 45.7578137],
-    zoom: 12
-    });
-  
-  
+    zoom: 12,
+});
+var urlAPI = "http://localhost/projects/Talis-front/jcdecaux/api" ;
+
+$.ajax({
+    type: "GET",
+    //dataType: "JSON",
+    url: "https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=746c2436efd2e5b5f11781719551f0ae0f420594",
+
+    success: function(data){
+        data.forEach(function(marker) {
+            // create a DOM element for the marker
+            var el = document.createElement('div');
+            el.id = 'marker';
+
+            var popup = new mapboxgl.Popup(
+                {
+                   anchor: 'top',   // To show popup on bottom
+                }
+            ).setHTML(`
+            <h2>${marker.number}</h2>
+            <p>${marker.address}</p>
+            <input type="submit" value="RESERVER">
+            `)
+            
+            // add marker to map
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.position)
+                .setPopup(popup)
+                .addTo(map); 
+        });
+    },
+    error: function(data){
+        console.error();
+
+    }
+
+})
+function formSubmitPopup(event){
+    event.preventDefault();
+    // AJAX request
     $.ajax({
-        type: "GET",
-        //dataType: "JSON",
-        url: "https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=18125dec00ffb281d822ceefb633311dc8ba4d7d",
-  
+        type: "POST",
+        url: `${urlAPI}/index.php`,
+        data: "test",
         success: function(data){
             console.log(data);
-            data.forEach(function(marker) {
-                // create a DOM element for the marker
-                var el = document.createElement('div');
-                el.id = 'marker';
-  
-                // create the popup
-                var popup = new mapboxgl.Popup({ offset: 25 })
-                .setHTML('<h3>' + marker.address + '</h3><p>' + marker.status + '</p>');
-  
-  
-                // el.addEventListener('click', function() {
-                //     window.alert(marker.properties.message);
-                // });
-  
-                // add marker to map
-                new mapboxgl.Marker(el)
-                    .setLngLat(marker.position)
-                    .setPopup(popup)
-                    .addTo(map);
-            });
-  
-            if(data.error){
-                console.log("Erreur de connexion");
-            }else{
-                // Afficher la map
-                $("#map").show();
-  
-                // Supprimer le formulaire
-                $("#form").hide();
-            }
         },
-        error: function(data){
-            console.error();
-  
-        }
-  
     })
+}
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "300px";
+    document.getElementById("main").style.marginLeft = "300px";
+    document.getElementsByClassName("mapboxgl-popup-content").style.marginLeft = "250px";
+  }
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
   
-    // $("#form").on("submit", function(event){
-    //     event.preventDefault();
-  
-    //     // Récupérer pseudo et password du form
-    //     var pseudo = $("input[name=pseudo]").val();
-    //     //console.log(pseudo);
-  
-    //     // Récupérer password
-    //     var password = $("input[name=password]").val();
-    //     //console.log(password);
-  
-    //     // Stocker dans un tableau les deux valeurs
-    //     var tabForm = [pseudo, password];
-    //     //console.log(tabForm);
-  
-    //     // Stocker dans un objet les deux valeurs
-    //     var objForm = {
-    //         Pseudo : pseudo,
-    //         Password : password
-    //      }
-    //      //console.log(objForm);
-    //      //console.log(objForm.Pseudo) // Select attribut pseudo
-  
-    //      serializeForm = $(this).serialize();
-    //     //  console.log(serializeForm);
-  
-  
-    //      $.ajax({
-    //          type: "GET",
-    //          //dataType: "JSON",
-    //          url: "script.php",
-    //          data: serializeForm,
-    //          success: function(data){
-    //              console.log(data);
-    //              data = JSON.parse(data)
-    //              if(data.error){
-    //                  console.log("Erreur de connexion");
-    //              }else{
-    //                  // Afficher la map
-    //                  $("#map").show();
-    //                  // Supprimer le formulaire
-    //                  $("#form").hide();
-    //              }
-    //          },
-    //          error: function(data){
-    //              console.error();
-  
-    //          }
-  
-    //      })
-  
-    // });
-  
-  });
+
+
+
